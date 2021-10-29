@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Formatter {
-    
+    int count = 0;
     public void format(String inFile, String outFile) throws IOException {
         
         FileReader fileIn = new FileReader(inFile);
@@ -20,12 +20,15 @@ public class Formatter {
             System.out.println(line.trim());
             String oneSpace = line.trim().replaceAll(" +", " ");
             list.add(oneSpace);
+            count ++;
         }
         sc.close();
         //writing from text file
         File fileOut = new File(outFile);
         FileWriter fWriter = new FileWriter(fileOut);
-        fWriter.write(list.toString());
+        for (int i = 0; i < count; i++) {
+            fWriter.write(list.get(i) + "\n");
+        }
         fWriter.close();
     }
 }
